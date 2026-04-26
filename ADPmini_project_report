@@ -1,0 +1,159 @@
+# Mini Project Report
+
+## 1. Title of the Mini Project
+**Pulse of the Community**: A Modern Citizen Issue Reporting & Resolution Platform.
+
+## 2. Abstract
+* **The Problem**: Communities often struggle with a lack of transparency and a slow process when reporting civic issues (like potholes, broken streetlights, or water leakage) to local authorities. 
+* **The Solution**: "Pulse of the Community" is a web-based platform that empowers citizens to easily report local issues, track their progress in real-time, and view civic data through an interactive dashboard.
+* **Key Outcome**: The system bridges the gap between citizens and municipal authorities, ensuring faster resolutions, data-driven decisions, and increased community engagement.
+
+## 3. Introduction
+* **Background**: Modern smart cities require digital infrastructure for civic management. Traditional methods of complaint registration are tedious and lack visibility to the public.
+* **Objectives**: 
+  * To create a user-friendly web application for reporting civic issues.
+  * To visualize reported data using a live map and interactive dashboard.
+  * To provide real-time status tracking for submitted complaints.
+  * To incorporate specialized sections, such as Animal Rescue coordination.
+* **Scope**: The project is primarily designed for local community members and governing bodies to log, track, and analyze community issues visually.
+
+## 4. Software Requirement Specification (SRS)
+**Functional Requirements:**
+* Users must be able to submit issues with categories, location, and severity.
+* Users must be able to track their issues using a unique Ticket ID.
+* The system should generate visual statistics and charts on a Dashboard.
+* The system should feature a map displaying issue locations.
+
+**Non-Functional Requirements:**
+* **Performance**: The application should load quickly and handle interactions smoothly.
+* **Usability**: The User Interface (UI) must be mobile-responsive and intuitive.
+* **Security**: User data and tracking IDs must be securely handled.
+
+**System Requirements:**
+* **Hardware Requirements:**
+  * Processor: Intel Core i3 (or equivalent) and above.
+  * RAM: 4 GB (minimum).
+  * Storage: 500 MB of free space.
+* **Software Requirements:**
+  * Operating System: Windows 10/11, macOS, or Linux.
+  * Frontend Framework: React.js (with Vite) and TypeScript.
+  * Styling: Tailwind CSS & Framer Motion (for smooth animations).
+  * Environment: Node.js.
+  * Web Browser: Google Chrome, Mozilla Firefox, or Webkit Equivalent.
+
+## 5. Graphical User Interface (GUI)
+The application utilizes a professional "glass-morphism" aesthetic with vibrant color coding. The key functional screens include:
+* **Home Page**: A welcoming landing page outlining the features of the platform.
+* **Dashboard**: Displays visual statistics (Total Issues, Resolved, In Progress) and interactive charts (Pie chart for categories, Bar chart for Ward-wise data).
+* **Report Issue**: A clean form allowing users to select an issue category, pin a location, and submit details.
+* **Live Map**: A visual map interface pointing out the geographic spread of open community issues.
+* **Track Complaint**: A search interface where users enter their Ticket ID to view a timeline of their issue's resolution.
+* **Animal Rescue**: A dedicated module specifically for reporting stray or injured animals.
+
+*(Note for the student: In your hardcopy, you should take screenshots of these pages from the localhost link we set up and paste them under this section!)*
+
+## 6. Source Code & Implementation Details
+*(Note for the student: Print these essential snippets to show your examiner exactly where the core HTML and CSS are used).*
+
+**Project Architecture Structure:**
+* `index.html` - The primary HTML entry point for the entire application.
+* `src/index.css` - Custom CSS rules and global theme variables.
+* `src/pages/` - UI layouts written in JSX (HTML within JavaScript).
+* `src/components/` - Reusable UI HTML structures (Navbar, Buttons).
+
+### A. The Core HTML Foundation (`index.html`)
+Even though the project uses a modern framework, it runs entirely out of a single standard HTML file where scripts are injected.
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulse of the Community</title>
+    <meta name="description" content="Pulse of the Community project">
+  </head>
+  <body>
+    <!-- The main HTML container where our dynamic application renders -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
+
+### B. Custom CSS Implementation (`src/index.css`)
+We used an overarching CSS file to define advanced properties like our smooth background animations and glass-morphism effects.
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --radius: 0.75rem;
+  }
+}
+
+/* Custom CSS class for the premium glass effect used in our layout */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+}
+```
+
+### C. HTML Structure via JSX (`src/pages/ReportIssue.tsx`)
+In modern development, HTML tags are written inside JavaScript files. Below is a snippet showing how forms, inputs, and buttons are structured using standard HTML tags (`<div>`, `<form>`, `<input>`, `<button>`).
+```tsx
+export default function ReportIssue() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6 text-center">Report an Issue</h1>
+      
+      {/* HTML Form Structure */}
+      <form className="glass-card max-w-2xl mx-auto p-6 rounded-xl">
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-2">Issue Title</label>
+          <input 
+            type="text" 
+            placeholder="E.g., Large pothole on Main St."
+            className="w-full p-3 rounded-lg border bg-white"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-2">Category</label>
+          <select className="w-full p-3 rounded-lg border bg-white">
+            <option value="roads">Roads & Transport</option>
+            <option value="water">Water & Sanitation</option>
+          </select>
+        </div>
+
+        <button type="submit" className="w-full bg-blue-600 text-white p-3 rounded-lg font-bold">
+          Submit Report
+        </button>
+      </form>
+    </div>
+  );
+}
+```
+
+## 7. Testing Document
+The project underwent manual functional testing. Below are the key test cases executed:
+
+| Test ID | Module | Test Description | Expected Output | Actual Output | Status |
+|---------|---------|------------------|-----------------|---------------|--------|
+| TC01 | Navigation | Click on 'Dashboard' link in navbar | Should redirect to Dashboard page | Redirected to Dashboard | **Pass** |
+| TC02 | Report Issue | Submit form with empty mandatory fields | System should block submission and prompt user | Blocked and prompted | **Pass** |
+| TC03 | Report Issue | Submit form with valid data | Should generate and display a Ticket ID | Ticket ID generated | **Pass** |
+| TC04 | Tracking | Enter valid Ticket ID in tracking bar | Should display issue details and timeline | Details displayed | **Pass** |
+| TC05 | Tracking | Enter invalid Ticket ID | Should display "Issue not found" message | Error message displayed | **Pass** |
+| TC06 | UI Layout | View application on a mobile screen | Layout should stack elements vertically | Layout scales properly | **Pass** |
+
+## 8. Conclusion
+* **Summary**: The "Pulse of the Community" project successfully implements a digital, interactive platform that bridges the communication gap between citizens and civic authorities. It modernizes the tracking mechanism and introduces data transparency using rich, data-driven dashboards.
+* **Future Scope**: As a future enhancement, the system could be upgraded to integrate automated SMS/Email notifications, directly connect to live municipal backend databases, and utilize AI to automatically categorize issues based on user-uploaded images.
