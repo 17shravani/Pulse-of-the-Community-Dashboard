@@ -1,5 +1,5 @@
 # 🏙️ Pulse of the Community
-> An extraordinary, modern Citizen Issue Reporting & Resolution Platform.
+> A modern Citizen Issue Reporting & Resolution Platform.
 
 ## 📖 Overview
 **Pulse of the Community** is a dynamic web application designed to bridge the communication gap between citizens and local authorities. Originally conceptualized as a basic HTML/CSS project, it was heavily expanded into a modern Single Page Application (SPA) to demonstrate industry-level frontend development. Citizens can report issues, track resolutions, and view live civic data.
